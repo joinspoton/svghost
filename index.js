@@ -4,7 +4,7 @@ var phantom = null;
 
 module.exports = function (selection, next) {
   var page = null;
-  var html = selection.node().outerHTML;
+  var html = '<body style="margin:0">' + selection.node().outerHTML + '</body>';
   var size = {
       width: selection.attr('width')
     , height: selection.attr('height')
