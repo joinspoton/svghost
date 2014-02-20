@@ -28,28 +28,24 @@ module.exports = function (selection, next) {
   }).onComplete(next);
 };
 
-module.exports.startPhantom = function (next) {
-  var f = ff(function () {
-    require('phantom').create(f.slotPlain());
-  }, function (proc) {
-    module.exports.setPhantom(proc);
-    module.exports.getPhantom(f.slot());
-  }).onComplete(next);
-};
-
-module.exports.stopPhantom = function () {
-  phantom.exit();
-  phantom = null;
-};
-
 module.exports.getPhantom = function (next) {
   if (phantom) {
     setImmediate(next, null, phantom);
   } else {
-    module.exports.startPhantom(next);
+    var f = ff(function () {
+      require('phantom').create(f.slotPlain());
+    }, function (proc) {
+      module.exports.setPhantom(proc);
+      module.exports.getPhantom(f.slot());
+    }).onComplete(next);
   }
 };
 
 module.exports.setPhantom = function (proc) {
   phantom = proc;
+};
+
+module.exports.delPhantom = function () {
+  phantom.exit();
+  phantom = null;
 };
