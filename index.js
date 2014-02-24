@@ -2,13 +2,9 @@ var ff = require('ff');
 
 var phantom = null;
 
-module.exports = function (selection, next) {
+module.exports = function (svg, options, next) {
   var page = null;
-  var html = '<body style="margin:0">' + selection.node().outerHTML + '</body>';
-  var size = {
-      width: selection.attr('width')
-    , height: selection.attr('height')
-  };
+  var html = '<body style="margin:0">' + svg + '</body>';
   
   var f = ff(function () {
     module.exports.getPhantom(f.waitPlain());
@@ -17,10 +13,14 @@ module.exports = function (selection, next) {
   }, function (obj) {
     page = obj;
     
-    page.set('viewportSize', size, f.waitPlain());
+    page.set('viewportSize', {
+        width: options.width
+      , height: options.height
+    }, f.waitPlain());
+    
     page.set('content', html, f.waitPlain());
   }, function () {
-    page.renderBase64('png', f.slotPlain());
+    page.renderBase64(options.format || 'png', f.slotPlain());
   }, function (data) {
     page.close();
     

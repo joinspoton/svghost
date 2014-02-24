@@ -1,20 +1,20 @@
 {
-    "name": "d3ghost"
-  , "version": "0.1.0"
-  , "description": ""
-  , "keywords": []
-  , "homepage": "https://github.com/joinspoton/d3ghost"
-  , "bugs": "https://github.com/joinspoton/d3ghost/issues"
+    "name": "svghost"
+  , "version": "0.9.0"
+  , "description": "SVG rendering with PhantomJS."
+  , "keywords": ["svg", "phantomjs"]
+  , "homepage": "https://github.com/joinspoton/svghost"
+  , "bugs": "https://github.com/joinspoton/svghost/issues"
   , "license": "MIT"
   , "author": "Teddy Cross <teddy@tkaz.ec> (http://tkaz.ec)"
   , "main": "./index"
-  , "repository": "git://github.com/joinspoton/d3ghost"
+  , "repository": "git://github.com/joinspoton/svghost"
   , "dependencies": {
         "ff": "~0.2.0"
       , "phantom": "~0.5.4"
     }
   , "engines": {
-        "node": "~0.10.22"
-      , "npm": "~1.3.14"
+        "node": "~0.10.26"
+      , "npm": "~1.4.3"
     }
 }
