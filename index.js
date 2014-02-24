@@ -46,6 +46,8 @@ module.exports.setPhantom = function (proc) {
 };
 
 module.exports.delPhantom = function () {
-  phantom.exit();
-  phantom = null;
+  if (phantom) {
+    phantom.exit();
+    phantom = null;
+  }
 };
